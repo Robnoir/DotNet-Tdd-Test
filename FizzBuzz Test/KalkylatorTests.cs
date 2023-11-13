@@ -9,13 +9,16 @@ namespace FizzBuzz_Test
         public void När_FizzBuzzKalkyl_EjImplementerad_Then_ShouldThrow_NotImplementedException()
         {
             // Arrange
-            int randomNummer = 3;
+            int randomNummer = 5;
+            
+            
 
             // Act
            string TestResult = Kalkylator.FizzBuzzKalkyl(randomNummer);
 
             // Asert
-            Assert.AreEqual("Fizz",TestResult);            
+            //Assert.AreEqual("Fizz",TestResult);
+            Assert.AreEqual("Buzz", TestResult);
         }
     }
 }
