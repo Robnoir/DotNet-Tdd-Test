@@ -29,6 +29,20 @@ namespace FizzBuzz
             return nummer.ToString();
             
         }
-      
+
+        public static void HanteraAnvändarInput(string input)
+        {
+            try
+            {
+                int nummer = int.Parse(input);
+                string resultat = FizzBuzzKalkyl(nummer);
+                Console.WriteLine(resultat);
+            }
+            catch (FormatException)
+            {
+                throw new ArgumentException($"{input} är inte ett nummer");
+            }
+        }
+
     }
 }

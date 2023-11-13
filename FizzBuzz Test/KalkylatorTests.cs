@@ -65,7 +65,38 @@ namespace FizzBuzz_Test
 
         }
 
-        
+        [TestMethod]
+        [DataRow("1", "1")]
+        [DataRow("2", "2")]
+        [DataRow("3", "Fizz")]
+        [DataRow("4", "4")]
+        [DataRow("5", "Buzz")]
+        [DataRow("6", "Fizz")]
+        [DataRow("10", "Buzz")]
+        [DataRow("11", "11")]
+        [DataRow("15", "FizzBuzz")]
+        public void HanteraAnvändarInputGiltigaNummer(string input, string expectedOutput)
+        {
+            // Arrange
+            StringWriter stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            // Act
+            Kalkylator.HanteraAnvändarInput(input);
+
+            // Assert
+            string actualOutput = stringWriter.ToString().Trim();
+            Assert.AreEqual(expectedOutput, actualOutput);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void HanteraAnvändarInputOgiltigInput()
+        {
+            Kalkylator.HanteraAnvändarInput("inte ett nummer");
+        }
+
+
     }
 
 }
