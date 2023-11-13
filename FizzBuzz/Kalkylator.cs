@@ -1,10 +1,15 @@
-﻿namespace FizzBuzz
+﻿using System.Diagnostics;
+
+namespace FizzBuzz
 {
     public class Kalkylator
     {
-        public static void FizzBuzzKalkyl(int nummer)
+        
+        public static string FizzBuzzKalkyl(int nummer)
         {
-            throw new NotImplementedException();
+            if (nummer %3== 0) return "Fizz";
+            return nummer.ToString(); 
+            
         }
     }
 }

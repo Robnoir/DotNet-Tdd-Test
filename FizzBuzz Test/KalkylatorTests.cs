@@ -6,16 +6,16 @@ namespace FizzBuzz_Test
     public class KalkylatorTests
     {
         [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
-        public void När_FizzBuzzKalkyl_EjImplementerad_Then_ShouldThrow_NotImplementedException()
+        public void NÃ¤r_FizzBuzzKalkyl_EjImplementerad_Then_ShouldThrow_NotImplementedException()
         {
             // Arrange
-            int randomNummer = 0;
+            int randomNummer = 3;
 
             // Act
-            Kalkylator.FizzBuzzKalkyl(randomNummer);
+           string TestResult = Kalkylator.FizzBuzzKalkyl(randomNummer);
 
-            // Testet kommer att bli grönt då ett NotImplementedException kastas
+            // Asert
+            Assert.AreEqual("Fizz",TestResult);            
         }
     }
 }
