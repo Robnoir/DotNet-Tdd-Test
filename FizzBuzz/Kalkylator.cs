@@ -1,46 +1,61 @@
-﻿using System.Diagnostics;
+﻿using System;
 
 namespace FizzBuzz
 {
     public class Kalkylator
     {
-        public static void KörOchSkrivUtFizzBuzz()
+        public static void SkrivUtFizzBuzz(int nummer)
         {
-            for (int i = 1; i <= 15 ; i++)
-            {
-                string resultat = FizzBuzzKalkyl(i);
-                Console.WriteLine(resultat);
-            }
+            Console.Write(FizzBuzzKalkyl(nummer));
         }
 
-        public static void LogMessage(string serviceName, string message)
-        {
-            Console.WriteLine($"Service {serviceName}: {message}");
-
-        }
         public static string FizzBuzzKalkyl(int nummer)
         {
-            if (nummer % 3== 0 && nummer % 5 == 0) return "FizzBuzz";
-            if (nummer % 3 == 0) return "Fizz";
-            if (nummer % 5 == 0) return "Buzz";
-            
-            
-            
+            if (nummer < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(nummer), "nummer kan ej va negativt");
+            }
+
+            bool divisibleBy3 = nummer % 3 == 0;
+            bool divisibleBy5 = nummer % 5 == 0;
+
+            if (divisibleBy3 && divisibleBy5) return "FizzBuzz";
+            if (divisibleBy3) return "Fizz";
+            if (divisibleBy5) return "Buzz";
+
             return nummer.ToString();
-            
         }
 
-        public static void HanteraAnvändarInput(string input)
+        public static void HanteraOchSkrivUtAnvändarInput()
         {
-            try
+            var input = LäsInput();
+            if (ÄrExitKommando(input))
+                return;
+
+            int nummer = ParsaInputTillNummer(input);
+            SkrivUtFizzBuzz(nummer);
+        }
+
+        private static string LäsInput()
+        {
+            Console.Write("Ange ett nummer (eller 'exit' för att avsluta): ");
+            return Console.ReadLine();
+        }
+
+        private static bool ÄrExitKommando(string input)
+        {
+            return input?.ToLower() == "exit";
+        }
+
+        private static int ParsaInputTillNummer(string input)
+        {
+            if (int.TryParse(input, out int nummer))
             {
-                int nummer = int.Parse(input);
-                string resultat = FizzBuzzKalkyl(nummer);
-                Console.WriteLine(resultat);
+                return nummer;
             }
-            catch (FormatException)
+            else
             {
-                throw new ArgumentException($"{input} är inte ett nummer");
+                throw new ArgumentException($"{input} är inte ett nummer.");
             }
         }
 
